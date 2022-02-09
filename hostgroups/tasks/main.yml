@@ -4,7 +4,8 @@
     ipaadmin_password: "{{ ipaadmin_password }}"
     name: "{{ _hostgroup.name }}"
     host: "{{ _hostgroup.host | default(omit) }}"
-    descriptiom: "{{ _hostgroup.descriptiom | default(omit) }}"
+    description: "{{ _hostgroup.description | default(omit) }}"
+    state: "{{ _hostgroup.descriptiom | default('present') }}"
   loop: "{{ hostgroup_list }}"
   loop_control:
     loop_var: _hostgroup
