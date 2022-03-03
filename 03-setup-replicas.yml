@@ -11,6 +11,16 @@
 
   pre_tasks:
 
+    - name: Create directories for cert files if it does not exist
+      file:
+	path: "{{ item | dirname }}"
+        state: directory
+        mode: '0755'
+      loop:
+	- "{{ ipareplica_dirsrv_cert_files }}"
+	- "{{ ipareplica_http_cert_files }}"
+	- "{{ external_ca_cert_file }}"
+
     - name: Copy cert files
       copy:
         src: "files/{{ item | basename }}"
